@@ -1,6 +1,7 @@
 # Brick Breaker 🧱
 
-This is a simple & lightweight clone of the classic game "Breakout" or "Brick Breaker". Created using plain HTML, CSS, JavaScript and Phaser 3.
+This is a simple & lightweight clone of the classic game "Breakout" or "Brick Breaker".
+Created using plain HTML, CSS, JavaScript and Phaser 3.
 
 Feel free to check out a live demo here (!)
 
