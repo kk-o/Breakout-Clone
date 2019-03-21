@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Phaser Workshop - Breakout</title>
+    <style>* { padding: 0; margin: 0; }</style>
+    <script src="./js/phaser.js"></script>
+</head>
+<body>
+<script>
+    var game = new Phaser.Game(480, 320, Phaser.CANVAS, null, {
+      preload: preload, create: create, update: update
+    });
+
+    var ball;
+    var paddle;
+    // ES5 vs ES6 -- UPDATED VERSION OF JAVASCRIPT THAT INTRODUCED NEW SYNTAX
+    // CONST AND LET <-- HUGE .. ARROW FUNCTIONS = (ARGS) => {}
+
+
+    function preload() {
+      // Scales the canvas, but maintains the aspect ratio 
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      // Enables alignment settings -- Keeps thing centered
+      game.scale.pageAlignHorizontally = true;
+      game.scale.pageAlignVertically = true;
+
+      // Sets the background color to white
+      game.stage.backgroundColor = "#eee";
+
+      // Preload our ball sprite
+      game.load.image('ball', './img/ball.png');
+      game.load.image('paddle', './img/paddle.png');
+    }
+
+    function create() {
+      // Create the physics for the game
+      game.physics.startSystem(Phaser.Physics.ARCADE);
+
+      // Generate the "ball" sprite at (50, 50)
+      ball = game.add.sprite(game.world.width*0.5, game.world.height-25, 'ball');
+      ball.anchor.set(0.5);
+
+      // enables physics for the ball
+      game.physics.enable(ball, Phaser.Physics.ARCADE);
+
+      // sets ball bounce and collisions 
+      ball.body.bounce.set(1);
+      ball.body.collideWorldBounds = true;
+
+      // sets ball velocity
+      ball.body.velocity.set(150, -150);
+      
+      // Generate the "paddle" sprite
+      paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle');
+      paddle.anchor.set(0.5, 1); // change paddle anchor point
+
+      // NOTE: Phaser gives us access to the dimensions of our 'world' object
+      // -- We can access the values of our world to position our paddle
+      //    exactly where we want it: game.world.width*0.5 will center the paddle
+      //    in our case, WORLD === CANVAS same thing, they're the same size
+      //    
+      //    in future cases, like in side-scrollers, our "world" will be bigger
+
+      // -- Anchoring: Where is the center of an object according to Phaser
+      //    BY DEFAULT --> Phaser anchors an object using their TOP LEFT coordinate
+      //    So, we will modify our paddles anchor point using code on line
+      // make paddle collide with ball
+      game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    }
+    
+    function update() {
+      // enable collision detection between the ball and paddle
+      game.physics.arcade.collide(ball, paddle);
+
+      // prevent the paddle body from moving
+      paddle.body.immovable = true;
+
+      // set the position of the paddle using mouse input
+      paddle.x = game.input.x || game.world.width*0.5;
+    
+    }
+</script>
+</body>
+</html>
+
+<!-- 
+  Step 1 of 16: Initialize the framework
+    --  Go to line 7 and edit the source location of your Phaser.js library
+
+  Step 2: Scaling the game
+    --  There's a useful 'scale' object available in Phaser with a few handy
+        methods and properties available. We will use it in our "preload()" 
+
+  Step 3: Rendering the ball
+    -- Load the ball image at position (50, 50)
+
+  Step 4: Moving the ball
+    -- Update the ball's position on each frame
+  
+  Step 5: Collision detection
+    -- Get the ball to bounce off the walls 
+    -- More technically, we're bouncing the ball off of the <canvas> element
+
+  Step 6: Add bouncy-ness to the ball
+    -- Set bounce to (1) using Phaser
+
+  Step 7: Render the paddle
+    -- Next, we will add the paddle object (right after the ball)
+
+  Step 8: Collide ball with paddle
+    -- Enable physics / collision detection for the paddle
+
+  Step 9: Control the paddle
+    -- Let the user control the paddle with their mouse
+
+  Step 10: Break the bricks
+    -- 
+ -->
