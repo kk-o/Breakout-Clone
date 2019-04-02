@@ -22,7 +22,7 @@ Simply open index.html and the game should start.
   open this project in your favourite IDE (i.e. VS Code + Live Server works great)
 ```
 ## Example 
-EXAMPLE IMAGE INCOMING
+![Example image](https://i.imgur.com/Og6r7Ct.gif)
 
 ## Running the tests
 
