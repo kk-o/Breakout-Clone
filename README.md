@@ -47,7 +47,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Kiko Estrada** - *Initial work* - [KikoEstrada](https://github.com/kk-o)
 
-See also the list of [contributors](https://github.com/kk-o/Breakout-Clone/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/kk-o/Brick-Breaker/contributors) who participated in this project.
 
 ## License
 
